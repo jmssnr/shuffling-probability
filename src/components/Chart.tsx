@@ -1,13 +1,12 @@
-import classes from "./Chart.module.css";
-import { Data, Datum } from "../types";
+import { Data } from "../types";
 import { scaleLinear, scaleBand } from "@visx/scale";
 import { Group } from "@visx/group";
 import estimateDensity from "@/utils/calculateKDE";
 import { LinePath } from "@visx/shape";
-import { LinearGradient } from "@visx/gradient";
-import { AxisBottom, AxisLeft } from "@visx/axis";
+import { AxisLeft } from "@visx/axis";
 import { colors } from "../colors";
 import { KernelTypes } from "@/utils/kernels";
+import RidgeLine from "./RidgeLine";
 import XAxis from "./XAxis";
 import YAxis from "./YAxis";
 
@@ -51,17 +50,12 @@ const Chart = ({ width, height, data, kernel, bandwidth }: ChartProps) => {
   const densities = estimateDensity(data, x.ticks(500), kernel, bandwidth);
   const ridgeLines = densities.map((e) => {
     return (
-      <LinePath
-        className={classes.chart}
-        key={e.key}
-        //@ts-ignore
-        data={e.values}
-        stroke={colors.darkAccent}
+      <RidgeLine
         x={(d: number[]) => x(d[0])}
         //@ts-ignore
         y={(d: number[]) => y(d[1]) + yCategorical(e.key) - innerHeight}
-        strokeWidth={1.5}
-        fill="url(#fill-gradient)"
+        key={e.key}
+        data={e.values}
       />
     );
   });
@@ -77,12 +71,6 @@ const Chart = ({ width, height, data, kernel, bandwidth }: ChartProps) => {
         height={height}
       />
       <Group left={margin.left} top={margin.top}>
-        <LinearGradient
-          id="fill-gradient"
-          to={colors.accent}
-          from={colors.darkAccent}
-          opacity={0.3}
-        />
         <XAxis top={innerHeight} scale={x} />
         <AxisLeft scale={y} hideAxisLine hideTicks hideZero numTicks={0} />
         <YAxis scale={yCategorical} />
