@@ -1,0 +1,12 @@
+.chart{
+    opacity: 0.8;
+}
+
+.chart:hover{
+    transform: translate(-5px, -5px);
+    fill:#f24391;
+    transition: all 1s;
+    transform-origin: 50% 50%;
+    opacity: 1;
+    cursor: pointer;
+}
