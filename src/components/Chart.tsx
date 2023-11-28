@@ -8,6 +8,8 @@ import { LinearGradient } from "@visx/gradient";
 import { AxisBottom, AxisLeft } from "@visx/axis";
 import { colors } from "../colors";
 import { KernelTypes } from "@/utils/kernels";
+import XAxis from "./XAxis";
+import YAxis from "./YAxis";
 
 type ChartProps = {
   width: number;
@@ -81,41 +83,9 @@ const Chart = ({ width, height, data, kernel, bandwidth }: ChartProps) => {
           from={colors.darkAccent}
           opacity={0.3}
         />
-        <AxisBottom
-          tickValues={[1, 7, 13, 19, 26, 33, 39, 46, 52]}
-          label="Location"
-          top={innerHeight}
-          scale={x}
-          labelProps={{
-            fill: colors.gray,
-            textAnchor: "middle",
-            verticalAnchor: "middle",
-            fontSize: 16,
-            fontWeight: 600,
-          }}
-          stroke={colors.darkGray}
-          tickStroke={colors.darkGray}
-          tickLabelProps={{
-            fill: colors.gray,
-            textAnchor: "middle",
-            verticalAnchor: "middle",
-            fontSize: 12,
-          }}
-        />
+        <XAxis top={innerHeight} scale={x} />
         <AxisLeft scale={y} hideAxisLine hideTicks hideZero numTicks={0} />
-        <AxisLeft
-          scale={yCategorical}
-          hideTicks
-          hideAxisLine
-          stroke={colors.darkGray}
-          tickStroke={colors.darkGray}
-          tickLabelProps={{
-            fill: colors.gray,
-            textAnchor: "end",
-            verticalAnchor: "end",
-            fontSize: 12,
-          }}
-        />
+        <YAxis scale={yCategorical} />
         {ridgeLines}
       </Group>
     </svg>

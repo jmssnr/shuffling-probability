@@ -1,14 +1,14 @@
 import Chart from "@/components/Chart";
 import InlineSelect from "@/components/InlineSelect";
 import data from "../data.json";
-import { Text, Group, Loader, Stack} from "@mantine/core";
+import { Text, Group, Loader, Stack } from "@mantine/core";
 import { colors } from "../colors";
 import { useState, Suspense } from "react";
 import { KernelTypes } from "@/utils/kernels";
 
 export default function Home() {
-  const [kernel, setKernel] = useState<KernelTypes>("gaussian");
-  const [bandwidth, setBandwidth] = useState<string>("0.33");
+  const [kernel, setKernel] = useState<KernelTypes>("epanechnikov");
+  const [bandwidth, setBandwidth] = useState<string>("1.3");
 
   return (
     <div
@@ -29,7 +29,7 @@ export default function Home() {
           Most probable locations of the top card of a deck of 52 playing cards
           after different shuffles
         </Text>
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader />}>
           <Chart
             width={700}
             height={450}
