@@ -26,7 +26,7 @@ export default function Home() {
           size="md"
           fw={600}
         >
-          Most probable locations of the top card of a deck of 52 playing cards
+          Most probable position of the top card of a deck of 52 playing cards
           after different shuffles
         </Text>
         <Suspense fallback={<Loader />}>
@@ -38,7 +38,7 @@ export default function Home() {
             bandwidth={Number(bandwidth)}
           />
         </Suspense>
-        <Group>
+        <Group wrap="nowrap">
           <Text ta="center" size="sm" fw={200} c={colors.gray}>
             Kernel density estimation is computed using the
           </Text>

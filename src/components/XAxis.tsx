@@ -11,7 +11,7 @@ const XAxis = ({ scale, top }: XAxisProps) => {
   return (
     <AxisBottom
       tickValues={[1, 7, 13, 19, 26, 33, 39, 46, 52]}
-      label="Location"
+      label="Position"
       top={top}
       scale={scale}
       labelProps={{
